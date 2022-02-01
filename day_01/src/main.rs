@@ -56,6 +56,7 @@ fn count_increments(file: &str) -> Result<i32, String> {
 }
 
 fn count_window_increments(file: &str) -> Result<i32, String> {
+
     let mut lines = file.lines();
     let mut window: [i32; 3] = [0; 3];
     let mut sum: i32;
