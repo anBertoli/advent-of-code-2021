@@ -1,4 +1,5 @@
 
+cargo run
 CHANGES=""
 
 # Run this script in the exercise folder currently used.
