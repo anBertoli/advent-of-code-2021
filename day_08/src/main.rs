@@ -3,7 +3,7 @@ use std::fs;
 
 fn main() {
     println!(
-        "Day 8! This time i tried different things, so the code could look awkward sometimes ⚠"
+        "Day 8! This time i tried different things, so the code could look awkward sometimes."
     );
 
     let mut buffer = String::new();
