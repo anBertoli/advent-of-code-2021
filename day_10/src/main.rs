@@ -1,17 +1,17 @@
 use std::fs;
 
 fn main() {
-    println!("Part 1!");
+    println!("Day 10!");
     let lines = read_input("input.txt");
-    let score = calculate_illegals_score(&lines);
-    println!("Illegals score: {}", score);
 
-    println!("Part 2!");
-    let score = part2(&lines);
-    println!("Middle score: {}", score);
+    let score = calculate_illegals_score(&lines);
+    println!("Part 1! Illegals score: {}", score);
+
+    let score = find_middle_score(&lines);
+    println!("Part 2! Middle score: {}", score);
 }
 
-fn part2(lines: &Vec<String>) -> u64 {
+fn find_middle_score(lines: &Vec<String>) -> u64 {
     let mut incomplete_lines: Vec<u64> = lines
         .iter()
         .map(|l| compute_stack(l))
@@ -19,31 +19,9 @@ fn part2(lines: &Vec<String>) -> u64 {
         .map(Result::unwrap)
         .map(|mut line| complete_stack(&mut line))
         .collect();
+
     incomplete_lines.sort();
-
     *incomplete_lines.get(incomplete_lines.len() / 2).unwrap()
-}
-
-fn complete_stack(stack: &Vec<char>) -> u64 {
-    let mut score = 0;
-
-    for i in (0..stack.len()).rev() {
-        let last_elem = match stack.get(i) {
-            Some(s) => s,
-            None => break,
-        };
-
-        score *= 5;
-        score += match last_elem {
-            '(' => 1,
-            '[' => 2,
-            '{' => 3,
-            '<' => 4,
-            _ => panic!("should not happen {}", last_elem),
-        }
-    }
-
-    score
 }
 
 fn calculate_illegals_score(lines: &Vec<String>) -> u32 {
@@ -121,6 +99,28 @@ fn compute_stack(line: &str) -> Result<Vec<char>, (usize, char)> {
     }
 
     Ok(stack)
+}
+
+fn complete_stack(stack: &Vec<char>) -> u64 {
+    let mut score = 0;
+
+    for i in (0..stack.len()).rev() {
+        let last_elem = match stack.get(i) {
+            Some(s) => s,
+            None => break,
+        };
+
+        score *= 5;
+        score += match last_elem {
+            '(' => 1,
+            '[' => 2,
+            '{' => 3,
+            '<' => 4,
+            _ => panic!("should not happen {}", last_elem),
+        }
+    }
+
+    score
 }
 
 fn read_input(path: &str) -> Vec<String> {
