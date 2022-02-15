@@ -1,4 +1,5 @@
 
+clear
 cargo run
 CHANGES=""
 
