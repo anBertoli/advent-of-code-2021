@@ -1,3 +1,7 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+#![allow(unused_imports)]
+
 use notes;
 use std::cmp::Ordering;
 use std::fmt::{self, Debug, Display};
@@ -6,10 +10,7 @@ use std::iter::Iterator;
 use std::ops::{Add, Index};
 
 fn main() {
-    // let pair = Pair::new(10, 20);
-    //
-    // let str_pair = Pair::new("10", "20");
-    // str_pair.to_string();
+    notes::macros::macro_test();
 }
 
 pub struct Pair<T> {
